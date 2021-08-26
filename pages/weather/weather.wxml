@@ -1,0 +1,171 @@
+<view class='weather'>
+  <!-- 定位区 -->
+  <view class='weizhi'>
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <text class='small_txt' space='ensp'>\n  {{region[2]}} </text>
+      <image class='mini_ico' src='/images/icons/more.png'></image>
+    </picker>
+  </view>
+
+  <!-- 实时天气状况图片和实时温度 -->
+  <!-- style='background-image:url("/images/zll.gif")' -->
+  <view class='weather_now'>
+    <image class='big_ico' src='{{weather_img}}'></image>
+    <view class='temNow'>
+      <view>
+        <text class='temNow_txt1'>{{showList.now.tmp}}</text>
+      </view>
+      <view>
+        <text class='temNow_txt2'>\n℃\n{{showList.now.cond_txt}} | {{showList.lifestyle[7].brf}}\n</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 短时预报 -->
+
+  <!-- 方法一、用wx：for -->
+  <view class='hours'>
+    <view wx:for="{{showList.hourly}}">
+      <view class="oneHours">
+        <text class='detailed'>{{item.tmp}}℃</text>
+        <image class='small_ico' src='/images/icons/tqzk/{{item.cond_code}}.png'></image>
+        <text class='detailed'>{{item.cond_txt}}</text>
+        <text class='detailed'>{{hours[index]}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 方法二、一个一个写 -->
+  <!-- <view class='hours'>
+    <view class="oneHours">
+      <text class='detailed'>{{showList.hourly[0].tmp}}℃</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.hourly[0].cond_code}}.png'></image>
+      <text class='detailed'>{{showList.hourly[0].cond_txt}}</text>
+      <text class='detailed'>{{hours[0]}}</text>
+    </view>
+    <view class="oneHours">
+      <text class='detailed'>{{showList.hourly[1].tmp}}℃</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.hourly[1].cond_code}}.png'></image>
+      <text class='detailed'>{{showList.hourly[1].cond_txt}}</text>
+      <text class='detailed'>{{hours[1]}}</text>
+    </view>
+    <view class="oneHours">
+      <text class='detailed'>{{showList.hourly[2].tmp}}℃</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.hourly[1].cond_code}}.png'></image>
+      <text class='detailed'>{{showList.hourly[2].cond_txt}}</text>
+      <text class='detailed'>{{hours[2]}}</text>
+    </view>
+    <view class="oneHours">
+      <text class='detailed'>{{showList.hourly[3].tmp}}℃</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.hourly[1].cond_code}}.png'></image>
+      <text class='detailed'>{{showList.hourly[3].cond_txt}}</text>
+      <text class='detailed'>{{hours[3]}}</text>
+    </view>
+    <view class="oneHours">
+      <text class='detailed'>{{showList.hourly[4].tmp}}℃</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.hourly[1].cond_code}}.png'></image>
+      <text class='detailed'>{{showList.hourly[4].cond_txt}}</text>
+      <text class='detailed'>{{hours[4]}}</text>
+    </view>
+    <view class="oneHours">
+      <text class='detailed'>{{showList.hourly[5].tmp}}℃</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.hourly[1].cond_code}}.png'></image>
+      <text class='detailed'>{{showList.hourly[5].cond_txt}}</text>
+      <text class='detailed'>{{hours[5]}}</text>
+    </view>
+    <view class="oneHours">
+      <text class='detailed'>{{showList.hourly[6].tmp}}℃</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.hourly[1].cond_code}}.png'></image>
+      <text class='detailed'>{{showList.hourly[6].cond_txt}}</text>
+      <text class='detailed'>{{hours[6]}}</text>
+    </view>
+  </view> -->
+
+  <view class="divLine"></view>
+  <!-- 五天天气预报 -->
+  <!-- <view class='fiveDays'>
+    <view>
+      <text class='mini_txt' space='nbsp'>  今天{{date[0]}}\n</text>
+      <text class='mini_txt' space='nbsp'>  明天{{date[1]}}\n</text>
+      <text class='mini_txt' space='nbsp'>  后天{{date[2]}}\n</text>
+      <text class='mini_txt' space='nbsp'>  周几{{date[3]}}\n</text>
+      <text class='mini_txt' space='nbsp'>  周几{{date[4]}}\n</text>
+    </view>
+    <view>
+    <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[0].cond_code_n}}.png'></image>
+    <text>\n</text>
+    <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[1].cond_code_n}}.png'></image>
+    <text>\n</text>
+    <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[2].cond_code_n}}.png'></image>
+    <text>\n</text>
+    <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[3].cond_code_n}}.png'></image>
+    <text>\n</text>
+    <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[4].cond_code_n}}.png'></image>
+    </view>
+  </view> -->
+  <view class='fiveDays'>
+    <view class='oneDays'>
+      <text class='mini_txt' space='nbsp'>  今天{{date[0]}}</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[0].cond_code_n}}.png'></image>
+      <text>{{showList.daily_forecast[0].cond_txt_d}}</text>
+      <text space='nbsp'>{{showList.daily_forecast[0].tmp_min}}℃ ~ {{showList.daily_forecast[0].tmp_max}}℃  \n</text>
+    </view>
+    <view class='oneDays'>
+      <text class='mini_txt' space='nbsp'>  明天{{date[1]}}</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[1].cond_code_n}}.png'></image>
+      <text>{{showList.daily_forecast[1].cond_txt_d}}</text>
+      <text space='nbsp'>{{showList.daily_forecast[1].tmp_min}}℃ ~ {{showList.daily_forecast[1].tmp_max}}℃  \n</text>
+    </view>
+    <view class='oneDays'>
+      <text class='mini_txt' space='nbsp'>  后天{{date[2]}}</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[2].cond_code_n}}.png'></image>
+      <text>{{showList.daily_forecast[2].cond_txt_d}}</text>
+      <text space='nbsp'>{{showList.daily_forecast[2].tmp_min}}℃ ~ {{showList.daily_forecast[2].tmp_max}}℃  \n</text>
+    </view>
+    <view class='oneDays'>
+      <text class='mini_txt' space='nbsp'>  周几{{date[3]}}</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[2].cond_code_n}}.png'></image>
+      <text>{{showList.daily_forecast[3].cond_txt_d}}</text>
+      <text space='nbsp'>{{showList.daily_forecast[3].tmp_min}}℃ ~ {{showList.daily_forecast[2].tmp_max}}℃  \n</text>
+    </view>
+    <view class='oneDays'>
+      <text class='mini_txt' space='nbsp'>  周几{{date[4]}}</text>
+      <image class='small_ico' src='/images/icons/tqzk/{{showList.daily_forecast[2].cond_code_n}}.png'></image>
+      <text>{{showList.daily_forecast[4].cond_txt_d}}</text>
+      <text space='nbsp'>{{showList.daily_forecast[4].tmp_min}}℃ ~ {{showList.daily_forecast[2].tmp_max}}℃  \n</text>
+    </view>
+  </view>
+
+  <!-- 今天天气描述 -->
+  <view class='test'>
+    <view class='detailed'>
+      <text class='' space='ensp'>    {{showList.lifestyle[4].txt}}\n  日出{{showList.daily_forecast
+[0].sr}}  日落{{showList.daily_forecast[0].ss}}\n\n</text>
+    </view>
+    <view class='zhibiao'>
+      <view class="box">
+        <image class='small_ico' src='/images/icons/feng.png'></image>
+        <text class='bold_txt'>{{showList.now.wind_sc}} 级</text>
+        <text class='detailed'> {{showList.now.wind_dir}}</text>
+      </view>
+      <view class="box">
+        <image class='small_ico' src='/images/icons/shidu.png'></image>
+        <text class='bold_txt'>{{showList.now.hum}} %</text>
+        <text class='detailed'>空气湿度</text>
+      </view>
+      <view class="box">
+        <image class='small_ico' src='/images/icons/tigan.png'></image>
+        <text class='bold_txt'>{{showList.now.fl}}℃</text>
+        <text class='detailed'>体感温度</text>
+      </view>
+      <view class="box">
+        <image class='small_ico' src='/images/icons/jiangshui.png'></image>
+        <text class='bold_txt'>{{showList.now.pcpn}}</text>
+        <text class='detailed'>降水量</text>
+      </view>
+    </view>
+    <view class='container'>
+      <text>\n@爱刘茜宝贝</text>
+    </view>
+  </view>
+</view>
